@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}{{ topic.title }} - LaptopLearning{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <!-- Topic Header -->
+    <div class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-2">{{ topic.title }}</h1>
+        <p class="text-lg opacity-90">{{ topic.description }}</p>
+        
+        <div class="mt-6">
+            <div class="flex justify-between mb-2">
+                <span>Progress</span>
+                <span class="font-semibold">{{ completion_percent }}%</span>
+            </div>
+            <div class="w-full bg-white bg-opacity-20 rounded-full h-3">
+                <div class="bg-white h-3 rounded-full transition" style="width: {{ completion_percent }}%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapters -->
+    <div>
+        <h2 class="text-2xl font-bold mb-6">Chapters</h2>
+        
+        <div class="space-y-4">
+            {% for chapter in chapters %}
+                <a href="{% url 'chapter_detail' chapter.id %}" class="block bg-white p-6 rounded-lg shadow hover:shadow-lg transition border-l-4 border-indigo-600">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                    {{ forloop.counter }}
+                                </span>
+                                <h3 class="text-xl font-bold text-gray-900">{{ chapter.title }}</h3>
+                            </div>
+                            
+                            <p class="text-gray-600 text-sm mb-4">{{ chapter.get_html_description|safe }}</p>
+                            
+                            <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                                <span>⏱️ {{ chapter.estimated_time }} min</span>
+                                <span>⭐ {{ chapter.xp_reward }} XP</span>
+                                <span>
+                                    {% if chapter.difficulty == 'easy' %}
+                                        🟢 Easy
+                                    {% elif chapter.difficulty == 'medium' %}
+                                        🟡 Medium
+                                    {% else %}
+                                        🔴 Hard
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Status Badge -->
+                        <div class="ml-4">
+                            {% with progress=progress_map|get_item:chapter.id %}
+                                {% if progress.status == 'completed' %}
+                                    <div class="text-center">
+                                        <span class="text-3xl">✅</span>
+                                        <p class="text-xs text-green-600 font-semibold">Completed</p>
+                                    </div>
+                                {% elif progress.status == 'in_progress' %}
+                                    <div class="text-center">
+                                        <span class="text-3xl">📖</span>
+                                        <p class="text-xs text-blue-600 font-semibold">In Progress</p>
+                                    </div>
+                                {% else %}
+                                    <div class="text-center">
+                                        <span class="text-3xl">🔒</span>
+                                        <p class="text-xs text-gray-600 font-semibold">Not Started</p>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="bg-gray-100 p-8 rounded-lg text-center">
+                    <p class="text-gray-600">No chapters available for this topic yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

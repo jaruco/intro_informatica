@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+dist/css/
+dist/js/
+# Environment variables (Security)
+.env
+
+# Environment & Secrets
+venv
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Misc
+.cache/
+.tmp/
+temp/
+*.bak
+*.backup
+.task/
+
+# Database and Dumps
+db.sqlite3
+datadump.json
