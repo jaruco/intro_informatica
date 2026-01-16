@@ -26,3 +26,4 @@ temp/
 # Database and Dumps
 db.sqlite3
 datadump.json
+create_users.py
