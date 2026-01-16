@@ -20,7 +20,8 @@
                     </a>
                 </div>
                 
-                <div class="flex items-center space-x-4">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4">
                     {% if user.is_authenticated %}
                         <a href="{% url 'dashboard' %}" class="text-gray-600 hover:text-indigo-600">
                             📚 Dashboard
@@ -46,6 +47,37 @@
                         </a>
                     {% endif %}
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-indigo-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📚 Dashboard</a>
+                    <a href="{% url 'topic_list' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📖 Topics</a>
+                    <a href="{% url 'profile' %}" class="block py-2 text-gray-600 hover:text-indigo-600">👤 Profile</a>
+                    <form method="POST" action="{% url 'logout' %}" class="block pt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="w-full text-left bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                            Logout
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="block py-2 text-gray-600 hover:text-indigo-600">Login</a>
+                    <a href="{% url 'signup' %}" class="block mt-2 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 text-center">
+                        Sign Up
+                    </a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -72,5 +104,14 @@
     </footer>
 
     {% block extra_js %}{% endblock %}
+    <script>
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
 </body>
 </html>

@@ -38,14 +38,23 @@ def dashboard(request):
     user_profile = request.user.profile
     topics = Topic.objects.all()
     
+    # Optimization: Get all started topics in one query to avoid N+1 queries
+    started_topic_ids = set(UserProgress.objects.filter(
+        user=request.user,
+        status__in=['in_progress', 'completed']
+    ).values_list('chapter__topic_id', flat=True))
+
     # Calculate progress for each topic
     topic_progress = []
     for topic in topics:
         progress = topic.completion_percentage(request.user)
+        is_started = topic.id in started_topic_ids
+
         topic_progress.append({
             'topic': topic,
             'progress': progress,
             'chapters_count': topic.chapters.count(),
+            'is_started': is_started,
         })
     
     # Calculate overall progress
