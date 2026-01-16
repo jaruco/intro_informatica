@@ -13,7 +13,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-producti
 
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app', cast=Csv())
 
 load_dotenv()
 
@@ -77,6 +77,10 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432', cast=int),
     }
 }
+
+# DATABASES = {
+#    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
