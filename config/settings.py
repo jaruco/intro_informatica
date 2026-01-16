@@ -5,7 +5,7 @@ Django settings for LaptopLearning app.
 import os
 from pathlib import Path
 from decouple import config, Csv
-from dotenv import load_dotenv
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,8 +14,6 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-producti
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app', cast=Csv())
-
-load_dotenv()
 
 # Application definition
 INSTALLED_APPS = [
@@ -68,19 +66,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432', cast=int),
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
-
-# DATABASES = {
-#    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
