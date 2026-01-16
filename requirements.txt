@@ -1,6 +1,7 @@
 Django==4.2.8
 Pillow==11.1.0
 python-decouple==3.8
+python-dotenv
 django-htmx==1.17.2
 django-tailwind==3.6.0
 markdown==3.5.1
