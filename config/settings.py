@@ -115,9 +115,10 @@ LOGOUT_REDIRECT_URL = 'home'
 # Tailwind configuration
 TAILWIND_APP_NAME = 'tailwind'
 
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://web-production-fe5fb.up.railway.app', cast=Csv())
+
 # Security settings (enable in production)
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://web-production-fe5fb.up.railway.app', cast=Csv())
