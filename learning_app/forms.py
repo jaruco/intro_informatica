@@ -7,7 +7,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254,
         required=True,
-        help_text='Required. Enter a valid email address.',
+        help_text='Obligatorio. Introduce una dirección de correo electrónico válida.',
         widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
     username = forms.CharField(

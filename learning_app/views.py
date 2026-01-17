@@ -166,7 +166,7 @@ def complete_chapter(request, chapter_id):
         elapsed = (timezone.now() - progress.started_at).total_seconds()
         required_seconds = (chapter.estimated_time * 60)/2
         if elapsed < required_seconds:
-            messages.warning(request, f"You're too fast! Please spend at least {chapter.estimated_time} minutes learning this chapter.")
+            messages.warning(request, f"¡Vas muy rápido! Por favor dedica al menos {chapter.estimated_time/2} minutos a aprender este capítulo.")
             return redirect('chapter_detail', chapter_id=chapter_id)
 
     progress.mark_completed()
@@ -199,7 +199,7 @@ def edit_profile(request):
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
             u_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'¡Tu cuenta ha sido actualizada!')
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)

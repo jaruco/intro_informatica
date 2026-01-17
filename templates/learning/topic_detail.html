@@ -12,7 +12,7 @@
         
         <div class="mt-6">
             <div class="flex justify-between mb-2">
-                <span>Progress</span>
+                <span>Progreso</span>
                 <span class="font-semibold">{{ completion_percent }}%</span>
             </div>
             <div class="w-full bg-white bg-opacity-20 rounded-full h-3">
@@ -23,7 +23,7 @@
 
     <!-- Chapters -->
     <div>
-        <h2 class="text-2xl font-bold mb-6">Chapters</h2>
+        <h2 class="text-2xl font-bold mb-6">Capítulos</h2>
         
         <div class="space-y-4">
             {% for chapter in chapters %}
@@ -44,11 +44,11 @@
                                 <span>⭐ {{ chapter.xp_reward }} XP</span>
                                 <span>
                                     {% if chapter.difficulty == 'easy' %}
-                                        🟢 Easy
+                                        🟢 Fácil
                                     {% elif chapter.difficulty == 'medium' %}
-                                        🟡 Medium
+                                        🟡 Medio
                                     {% else %}
-                                        🔴 Hard
+                                        🔴 Difícil
                                     {% endif %}
                                 </span>
                             </div>
@@ -60,17 +60,17 @@
                                 {% if progress.status == 'completed' %}
                                     <div class="text-center">
                                         <span class="text-3xl">✅</span>
-                                        <p class="text-xs text-green-600 font-semibold">Completed</p>
+                                        <p class="text-xs text-green-600 font-semibold">Completado</p>
                                     </div>
                                 {% elif progress.status == 'in_progress' %}
                                     <div class="text-center">
                                         <span class="text-3xl">📖</span>
-                                        <p class="text-xs text-blue-600 font-semibold">In Progress</p>
+                                        <p class="text-xs text-blue-600 font-semibold">En Progreso</p>
                                     </div>
                                 {% else %}
                                     <div class="text-center">
                                         <span class="text-3xl">🔒</span>
-                                        <p class="text-xs text-gray-600 font-semibold">Not Started</p>
+                                        <p class="text-xs text-gray-600 font-semibold">No Iniciado</p>
                                     </div>
                                 {% endif %}
                             {% endwith %}
@@ -79,7 +79,7 @@
                 </a>
             {% empty %}
                 <div class="bg-gray-100 p-8 rounded-lg text-center">
-                    <p class="text-gray-600">No chapters available for this topic yet.</p>
+                    <p class="text-gray-600">No hay capítulos disponibles para este tema aún.</p>
                 </div>
             {% endfor %}
         </div>

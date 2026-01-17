@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}LaptopLearning - Master the Basics{% endblock %}</title>
+    <title>{% block title %}LaptopLearning - Domina los Conceptos Básicos{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     {% block extra_css %}{% endblock %}
@@ -24,26 +24,26 @@
                 <div class="hidden md:flex items-center space-x-4">
                     {% if user.is_authenticated %}
                         <a href="{% url 'dashboard' %}" class="text-gray-600 hover:text-indigo-600">
-                            📚 Dashboard
+                            📚 Panel
                         </a>
                         <a href="{% url 'topic_list' %}" class="text-gray-600 hover:text-indigo-600">
-                            📖 Topics
+                            📖 Temas
                         </a>
                         <a href="{% url 'profile' %}" class="text-gray-600 hover:text-indigo-600">
-                            👤 Profile
+                            👤 Perfil
                         </a>
                         <form method="POST" action="{% url 'logout' %}" style="display: inline;">
                             {% csrf_token %}
                             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                                Logout
+                                Cerrar Sesión
                             </button>
                         </form>
                     {% else %}
                         <a href="{% url 'login' %}" class="text-gray-600 hover:text-indigo-600">
-                            Login
+                            Iniciar Sesión
                         </a>
                         <a href="{% url 'signup' %}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                            Sign Up
+                            Registrarse
                         </a>
                     {% endif %}
                 </div>
@@ -63,19 +63,19 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
             <div class="px-4 pt-2 pb-4 space-y-2">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'dashboard' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📚 Dashboard</a>
-                    <a href="{% url 'topic_list' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📖 Topics</a>
-                    <a href="{% url 'profile' %}" class="block py-2 text-gray-600 hover:text-indigo-600">👤 Profile</a>
+                    <a href="{% url 'dashboard' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📚 Panel</a>
+                    <a href="{% url 'topic_list' %}" class="block py-2 text-gray-600 hover:text-indigo-600">📖 Temas</a>
+                    <a href="{% url 'profile' %}" class="block py-2 text-gray-600 hover:text-indigo-600">👤 Perfil</a>
                     <form method="POST" action="{% url 'logout' %}" class="block pt-2">
                         {% csrf_token %}
                         <button type="submit" class="w-full text-left bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                            Logout
+                            Cerrar Sesión
                         </button>
                     </form>
                 {% else %}
-                    <a href="{% url 'login' %}" class="block py-2 text-gray-600 hover:text-indigo-600">Login</a>
+                    <a href="{% url 'login' %}" class="block py-2 text-gray-600 hover:text-indigo-600">Iniciar Sesión</a>
                     <a href="{% url 'signup' %}" class="block mt-2 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 text-center">
-                        Sign Up
+                        Registrarse
                     </a>
                 {% endif %}
             </div>
@@ -100,7 +100,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center py-6 mt-12">
-        <p>&copy; 2025 LaptopLearning. A gamified learning platform for laptop basics.</p>
+        <p>&copy; 2025 LaptopLearning. Una plataforma de aprendizaje gamificada para conceptos básicos de portátiles.</p>
     </footer>
 
     {% block extra_js %}{% endblock %}

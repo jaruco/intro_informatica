@@ -13,18 +13,18 @@
             
             <div class="flex flex-wrap gap-4">
                 <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
-                    ⏱️ {{ chapter.estimated_time }} minutes
+                    ⏱️ {{ chapter.estimated_time }} minutos
                 </span>
                 <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
                     ⭐ {{ chapter.xp_reward }} XP
                 </span>
                 <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
                     {% if chapter.difficulty == 'easy' %}
-                        🟢 Easy
+                        🟢 Fácil
                     {% elif chapter.difficulty == 'medium' %}
-                        🟡 Medium
+                        🟡 Medio
                     {% else %}
-                        🔴 Hard
+                        🔴 Difícil
                     {% endif %}
                 </span>
             </div>
@@ -40,7 +40,7 @@
         <!-- Navigation -->
         <div class="flex justify-between">
             <a href="{% url 'topic_detail' topic.id %}" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">
-                ← Back to Topic
+                ← Volver al Tema
             </a>
         </div>
     </div>
@@ -49,39 +49,39 @@
     <div class="space-y-6">
         <!-- Progress Card -->
         <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-lg font-bold mb-4">Your Progress</h3>
+            <h3 class="text-lg font-bold mb-4">Tu Progreso</h3>
             
             {% if progress.status == 'completed' %}
                 <div class="text-center bg-green-100 p-6 rounded-lg mb-4">
                     <p class="text-5xl mb-2">✅</p>
-                    <p class="text-lg font-semibold text-green-700">Completed!</p>
+                    <p class="text-lg font-semibold text-green-700">¡Completado!</p>
                     <p class="text-sm text-green-600 mt-2">
-                        Completed on {{ progress.completed_at|date:"M d, Y" }}
+                        Completado el {{ progress.completed_at|date:"d M, Y" }}
                     </p>
-                    <p class="text-2xl font-bold text-green-700 mt-3">+{{ progress.xp_earned }} XP</p>
+                    <p class="text-2xl font-bold text-green-700 mt-3">+{{ progress.xp_earned }} XP ganados</p>
                 </div>
             {% elif progress.status == 'in_progress' %}
                 <div class="text-center bg-blue-100 p-6 rounded-lg mb-4">
                     <p class="text-5xl mb-2">📖</p>
-                    <p class="text-lg font-semibold text-blue-700">In Progress...</p>
+                    <p class="text-lg font-semibold text-blue-700">En Progreso...</p>
                 </div>
                 
                 <form method="post" action="{% url 'complete_chapter' chapter.id %}">
                     {% csrf_token %}
                     <button type="submit" class="w-full bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 font-semibold text-lg transition">
-                        ✅ Mark as Complete
+                        ✅ Marcar como Completado
                     </button>
                 </form>
             {% else %}
                 <div class="text-center bg-gray-100 p-6 rounded-lg mb-4">
                     <p class="text-5xl mb-2">🔒</p>
-                    <p class="text-lg font-semibold text-gray-700">Not Started</p>
+                    <p class="text-lg font-semibold text-gray-700">No Iniciado</p>
                 </div>
                 
                 <form method="post" action="{% url 'start_chapter' chapter.id %}">
                     {% csrf_token %}
                     <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg hover:bg-indigo-700 font-semibold text-lg transition">
-                        🚀 Start Chapter
+                        🚀 Iniciar Capítulo
                     </button>
                 </form>
             {% endif %}
@@ -89,20 +89,20 @@
 
         <!-- Info Card -->
         <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-lg font-bold mb-4">Chapter Info</h3>
+            <h3 class="text-lg font-bold mb-4">Info del Capítulo</h3>
             <div class="space-y-3 text-sm">
                 <p>
-                    <span class="font-semibold">Difficulty:</span>
+                    <span class="font-semibold">Dificultad:</span>
                     {% if chapter.difficulty == 'easy' %}
-                        🟢 Easy
+                        🟢 Fácil
                     {% elif chapter.difficulty == 'medium' %}
-                        🟡 Medium
+                        🟡 Medio
                     {% else %}
-                        🔴 Hard
+                        🔴 Difícil
                     {% endif %}
                 </p>
-                <p><span class="font-semibold">Estimated Time:</span> {{ chapter.estimated_time }} minutes</p>
-                <p><span class="font-semibold">XP Reward:</span> {{ chapter.xp_reward }} points</p>
+                <p><span class="font-semibold">Tiempo Estimado:</span> {{ chapter.estimated_time }} minutos</p>
+                <p><span class="font-semibold">Recompensa de XP:</span> {{ chapter.xp_reward }} puntos</p>
             </div>
         </div>
     </div>

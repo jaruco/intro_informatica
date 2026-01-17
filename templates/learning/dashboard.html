@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard - LaptopLearning{% endblock %}
+{% block title %}Panel - LaptopLearning{% endblock %}
 
 {% block content %}
 <div class="space-y-8">
     <!-- User Stats -->
     <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-8 rounded-lg shadow-lg">
-        <h1 class="text-2xl md:text-3xl font-bold mb-4">Welcome, {{ user.first_name|default:user.username }}! 👋</h1>
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">¡Bienvenido, {{ user.first_name|default:user.username }}! 👋</h1>
         
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
             <div class="bg-white bg-opacity-20 p-4 rounded">
-                <p class="text-sm opacity-80">Level</p>
+                <p class="text-sm opacity-80">Nivel</p>
                 <p class="text-4xl font-bold">{{ current_level }}</p>
             </div>
             <div class="bg-white bg-opacity-20 p-4 rounded">
@@ -18,7 +18,7 @@
                 <p class="text-4xl font-bold">{{ total_xp }}</p>
             </div>
             <div class="bg-white bg-opacity-20 p-4 rounded">
-                <p class="text-sm opacity-80">Overall Progress</p>
+                <p class="text-sm opacity-80">Progreso General</p>
                 <p class="text-2xl font-bold">
                     <span id="overall-progress">
                         {{ overall_progress }}%
@@ -30,7 +30,7 @@
 
     <!-- Topics Progress -->
     <div>
-        <h2 class="text-2xl font-bold mb-6">Your Learning Path 📚</h2>
+        <h2 class="text-2xl font-bold mb-6">Tu Ruta de Aprendizaje 📚</h2>
         
         {% if topic_progress %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -47,12 +47,12 @@
                         
                         <div class="space-y-2">
                             <div class="flex justify-between text-sm">
-                                <span>Progress</span>
+                                <span>Progreso</span>
                                 <span class="font-semibold">
                                     {% if item.progress > 0 %}
                                         {{ item.progress }}%
                                     {% elif item.is_started %}
-                                        <span class="text-indigo-600">Started</span>
+                                        <span class="text-indigo-600">Iniciado</span>
                                     {% else %}
                                         {{ item.progress }}%
                                     {% endif %}
@@ -62,7 +62,7 @@
                                 <div class="bg-indigo-600 h-2 rounded-full transition" style="width: {{ item.progress }}%"></div>
                             </div>
                             <p class="text-xs text-gray-500">
-                                {{ item.chapters_count }} chapters
+                                {{ item.chapters_count }} capítulos
                             </p>
                         </div>
                     </a>
@@ -70,7 +70,7 @@
             </div>
         {% else %}
             <div class="bg-gray-100 p-8 rounded-lg text-center">
-                <p class="text-gray-600">No topics available yet. Check back soon!</p>
+                <p class="text-gray-600">No hay temas disponibles aún. ¡Vuelve pronto!</p>
             </div>
         {% endif %}
     </div>

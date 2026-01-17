@@ -4,7 +4,7 @@
 <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden md:max-w-lg mt-10">
     <div class="w-full p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Edit Profile</h2>
+            <h2 class="text-2xl font-bold text-gray-800">Editar Perfil</h2>
         </div>
         
         <form method="POST">
@@ -13,7 +13,7 @@
             <!-- Username -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="id_username">
-                    Username
+                    Nombre de usuario
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                        id="id_username" type="text" name="username" value="{{ u_form.username.value }}">
@@ -25,7 +25,7 @@
             <!-- Email -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="id_email">
-                    Email
+                    Correo electrónico
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                        id="id_email" type="email" name="email" value="{{ u_form.email.value }}">
@@ -37,7 +37,7 @@
             <!-- First Name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="id_first_name">
-                    First Name
+                    Nombre
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                        id="id_first_name" type="text" name="first_name" value="{{ u_form.first_name.value|default:'' }}">
@@ -46,7 +46,7 @@
             <!-- Last Name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="id_last_name">
-                    Last Name
+                    Apellido
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                        id="id_last_name" type="text" name="last_name" value="{{ u_form.last_name.value|default:'' }}">
@@ -54,10 +54,10 @@
 
             <div class="flex items-center justify-between mt-8">
                 <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150" type="submit">
-                    Save Changes
+                    Guardar Cambiosnece
                 </button>
                 <a class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-indigo-800" href="{% url 'profile' %}">
-                    Cancel
+                    Cancelar
                 </a>
             </div>
         </form>
