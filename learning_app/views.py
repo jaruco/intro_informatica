@@ -166,7 +166,7 @@ def complete_chapter(request, chapter_id):
         elapsed = (timezone.now() - progress.started_at).total_seconds()
         required_seconds = (chapter.estimated_time * 60)/2
         if elapsed < required_seconds:
-            messages.warning(request, f"¡Vas muy rápido! Por favor dedica al menos {chapter.estimated_time/2} minutos a aprender este capítulo.")
+            messages.warning(request, f"¡Vas muy rápido! Por favor dedica al menos {chapter.estimated_time/2:g} minutos a aprender este capítulo.")
             return redirect('chapter_detail', chapter_id=chapter_id)
 
     progress.mark_completed()
