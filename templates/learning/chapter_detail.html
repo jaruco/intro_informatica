@@ -4,49 +4,32 @@
 
 {% block content %}
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Main Content -->
-    <div class="lg:col-span-2 space-y-6">
-        <!-- Chapter Header -->
-        <div class="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-8 rounded-lg shadow-lg">
-            <p class="text-sm opacity-80">{{ topic.title }}</p>
-            <h1 class="text-3xl font-bold mt-2 mb-4">{{ chapter.title }}</h1>
-            
-            <div class="flex flex-wrap gap-4">
-                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
-                    ⏱️ {{ chapter.estimated_time }} minutos
-                </span>
-                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
-                    ⭐ {{ chapter.xp_reward }} XP
-                </span>
-                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
-                    {% if chapter.difficulty == 'easy' %}
-                        🟢 Fácil
-                    {% elif chapter.difficulty == 'medium' %}
-                        🟡 Medio
-                    {% else %}
-                        🔴 Difícil
-                    {% endif %}
-                </span>
-            </div>
-        </div>
-
-        <!-- Chapter Content -->
-        <div class="bg-white p-8 rounded-lg shadow">
-            <div class="prose prose-lg max-w-none">
-                {{ chapter.get_html_content|safe }}
-            </div>
-        </div>
-
-        <!-- Navigation -->
-        <div class="flex justify-between">
-            <a href="{% url 'topic_detail' topic.id %}" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">
-                ← Volver al Tema
-            </a>
+    <!-- Chapter Header -->
+    <div class="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-8 rounded-lg shadow-lg lg:col-span-2">
+        <p class="text-sm opacity-80">{{ topic.title }}</p>
+        <h1 class="text-3xl font-bold mt-2 mb-4">{{ chapter.title }}</h1>
+        
+        <div class="flex flex-wrap gap-4">
+            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
+                ⏱️ {{ chapter.estimated_time }} minutos
+            </span>
+            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
+                ⭐ {{ chapter.xp_reward }} XP
+            </span>
+            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">
+                {% if chapter.difficulty == 'easy' %}
+                    🟢 Fácil
+                {% elif chapter.difficulty == 'medium' %}
+                    🟡 Medio
+                {% else %}
+                    🔴 Difícil
+                {% endif %}
+            </span>
         </div>
     </div>
 
     <!-- Sidebar: Progress & Actions -->
-    <div class="space-y-6">
+    <div class="space-y-6 lg:col-span-1 lg:row-span-2">
         <!-- Progress Card -->
         <div class="bg-white p-6 rounded-lg shadow">
             <h3 class="text-lg font-bold mb-4">Tu Progreso</h3>
@@ -104,6 +87,21 @@
                 <p><span class="font-semibold">Tiempo Estimado:</span> {{ chapter.estimated_time }} minutos</p>
                 <p><span class="font-semibold">Recompensa de XP:</span> {{ chapter.xp_reward }} puntos</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Chapter Content & Navigation -->
+    <div class="space-y-6 lg:col-span-2">
+        <div class="bg-white p-8 rounded-lg shadow">
+            <div class="prose prose-lg max-w-none">
+                {{ chapter.get_html_content|safe }}
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <a href="{% url 'topic_detail' topic.id %}" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">
+                ← Volver al Tema
+            </a>
         </div>
     </div>
 </div>
